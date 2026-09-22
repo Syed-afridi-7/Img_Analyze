@@ -1,0 +1,11 @@
+# Streamlit config — dark UI with a magenta accent to match the CLI report.
+# Telemetry disabled: a privacy tool shouldn't phone home.
+[browser]
+gatherUsageStats = false
+
+[theme]
+base = "dark"
+primaryColor = "#d946ef"
+backgroundColor = "#0e1117"
+secondaryBackgroundColor = "#1a1c24"
+textColor = "#fafafa"

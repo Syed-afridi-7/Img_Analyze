@@ -1,0 +1,4 @@
+Pillow>=10.0.0
+
+# Optional — web frontend only (streamlit run app.py):
+# streamlit>=1.30

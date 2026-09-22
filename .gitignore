@@ -1,0 +1,21 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+
+# Embedded Python runtime binaries & packages
+/Lib/
+/*.dll
+/*.exe
+/*.cat
+/*.zip
+/*.pth
+/*._pth
+/*.pyd
+
+# Environment & caches
+.pytest_cache/
+.coverage
+htmlcov/
+.streamlit/secrets.toml

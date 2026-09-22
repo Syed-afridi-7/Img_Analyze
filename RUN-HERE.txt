@@ -1,0 +1,45 @@
+EXIF Metadata Extractor — portable bundle (Windows x64)
+========================================================
+
+This folder is self-contained: it bundles the Python 3.14.6 runtime and
+every required library (Streamlit, Pillow, piexif). Nothing needs to be
+installed on the target machine — just unzip and run.
+
+Requirements: 64-bit Windows 10 or 11. That's it.
+
+Start the web app
+-----------------
+    Double-click:  run-web.bat
+
+    Your browser opens at http://localhost:8501.
+    Use the sidebar to upload an image or pick a bundled demo image.
+    Keep the console window open; Ctrl+C in it stops the app.
+
+Use the command line
+--------------------
+    run-cli.bat sample.jpg --all
+    run-cli.bat samples\pixel_sydney.jpg --json
+    run-cli.bat photo1.jpg photo2.png
+
+    (run-cli.bat passes straight through to the Python CLI, so all flags
+    from the README work: --all, --json, --no-color)
+
+What's inside
+-------------
+    python.exe etc.     embedded Python 3.14.6 runtime (no install needed)
+    Lib\site-packages   bundled libraries (Streamlit, Pillow, piexif, ...)
+    exif_extractor\     the tool itself
+    app.py              web frontend
+    sample.jpg          demo image with EXIF + GPS (Eiffel Tower)
+    samples\            more demo images (all GPS quadrants, no-GPS, clean)
+    run-web.bat         start the web app
+    run-cli.bat         run the command-line tool
+    README.md           full documentation
+    PROJECT_DOCUMENT.md complete project specification
+
+Privacy notes
+-------------
+- Everything runs locally; images never leave the machine.
+- Streamlit usage telemetry is disabled in .streamlit\config.toml.
+- The embedded map (shown only when an image has GPS data) loads Google
+  Maps in your browser and sends only the coordinates — never the image.
