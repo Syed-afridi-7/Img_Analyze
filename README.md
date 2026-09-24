@@ -233,6 +233,25 @@ if report.has_gps:
 tools like `exiftool -all= photo.jpg`, ImageMagick (`mogrify -strip`), or the
 "remove location" option in your phone's share sheet.
 
+## Academic Dissertation & Technical Report
+
+An ultra-detailed, publication-grade academic dissertation (~47,000+ words, 80+ pages equivalent) is available in the [`docs/`](docs/) directory:
+
+- 📄 **Master Thesis:** [`docs/DISSERTATION.md`](docs/DISSERTATION.md)
+- 📂 **Modular Chapter Files:** [`docs/dissertation/`](docs/dissertation/)
+  - `00_front_matter.md` — Title page, evaluation rubrics, IEEE abstract, figure & table indices.
+  - `01_introduction.md` — Evolution of EXIF 2.32, photography vs. privacy paradox, threat modeling, research objectives.
+  - `02_literature_review.md` — Forensic tool comparison, JFIF/TIFF/PNG container specs, FRE 901 crypto, geodesy & colorimetry math.
+  - `03_system_architecture.md` — End-to-end pipeline, DFD Levels 0–2, UML diagrams, zero-disk in-memory sandbox proofs.
+  - `04_implementation.md` — Deep code walkthrough (stream hashing, bitmasks, rational tuples, AI chunk detection, lossless scrubbing).
+  - `05_batch_processing.md` — Ingestion mechanics, cross-image risk scoring, multi-point geospatial mapping, comparative CSV export.
+  - `06_testing_validation.md` — 48 automated test suite breakdown, Case Studies A–D, latency and RAM benchmarks.
+  - `07_limitations.md` — Unsigned EXIF spoofing, C2PA, social media CDN stripping, RAW containers, and pixel-level leakage.
+  - `08_conclusion.md` — Contributions, multi-disciplinary impact in OSINT/DFIR, and future AI/YOLO roadmap.
+  - `09_appendices_code.md` — EXIF/GPS tag dictionary (0x010E to 0xA434), PNG chunk reference, and core source code listings.
+  - `10_references.md` — 53 publication-grade IEEE/ACM citations.
+
 ## License
 
 MIT — see source headers. Built as an educational OSINT/privacy project.
+
