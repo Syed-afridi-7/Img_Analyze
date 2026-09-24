@@ -95,40 +95,82 @@ def add_formatted_runs(paragraph, text, is_code=False):
             paragraph.add_run(token)
 
 
+def add_page_number(run):
+    fldChar1 = parse_xml(r'<w:fldChar %s w:fldCharType="begin"/>' % nsdecls('w'))
+    instrText = parse_xml(r'<w:instrText %s xml:space="preserve"> PAGE </w:instrText>' % nsdecls('w'))
+    fldChar2 = parse_xml(r'<w:fldChar %s w:fldCharType="separate"/>' % nsdecls('w'))
+    fldChar3 = parse_xml(r'<w:fldChar %s w:fldCharType="end"/>' % nsdecls('w'))
+    run._r.append(fldChar1)
+    run._r.append(instrText)
+    run._r.append(fldChar2)
+    run._r.append(fldChar3)
+
+
+def add_total_pages(run):
+    fldChar1 = parse_xml(r'<w:fldChar %s w:fldCharType="begin"/>' % nsdecls('w'))
+    instrText = parse_xml(r'<w:instrText %s xml:space="preserve"> NUMPAGES </w:instrText>' % nsdecls('w'))
+    fldChar2 = parse_xml(r'<w:fldChar %s w:fldCharType="separate"/>' % nsdecls('w'))
+    fldChar3 = parse_xml(r'<w:fldChar %s w:fldCharType="end"/>' % nsdecls('w'))
+    run._r.append(fldChar1)
+    run._r.append(instrText)
+    run._r.append(fldChar2)
+    run._r.append(fldChar3)
+
+
 def create_document():
     doc = Document()
 
-    # 1-inch margins
+    # Standard academic 1-inch margins
     for section in doc.sections:
         section.top_margin = Inches(1.0)
         section.bottom_margin = Inches(1.0)
         section.left_margin = Inches(1.0)
         section.right_margin = Inches(1.0)
 
-        # Header & Footer
+        # Header
         header = section.header
         hp = header.paragraphs[0]
         hp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
-        hrun = hp.add_run("Img_Analyze: Digital Forensics & Privacy Engine | Dissertation")
+        hrun = hp.add_run("Img_Analyze: Digital Forensics & Privacy Engine | Academic Dissertation")
         hrun.font.name = "Calibri"
         hrun.font.size = Pt(8.5)
         hrun.font.color.rgb = MUTED
 
+        # Footer with dynamic Page X of Y
         footer = section.footer
         fp = footer.paragraphs[0]
-        fp.alignment = WD_ALIGN_PARAGRAPH.CENTER
-        frun = fp.add_run("Confidential Academic & Forensic Research Report")
-        frun.font.name = "Calibri"
-        frun.font.size = Pt(8.5)
-        frun.font.color.rgb = MUTED
+        fp.alignment = WD_ALIGN_PARAGRAPH.RIGHT
+        
+        frun1 = fp.add_run("Confidential Academic Dissertation  |  Page ")
+        frun1.font.name = "Calibri"
+        frun1.font.size = Pt(9.0)
+        frun1.font.color.rgb = MUTED
 
-    # Base Normal Style
+        page_run = fp.add_run()
+        page_run.font.name = "Calibri"
+        page_run.font.size = Pt(9.0)
+        page_run.font.color.rgb = NAVY
+        page_run.bold = True
+        add_page_number(page_run)
+
+        frun2 = fp.add_run(" of ")
+        frun2.font.name = "Calibri"
+        frun2.font.size = Pt(9.0)
+        frun2.font.color.rgb = MUTED
+
+        total_run = fp.add_run()
+        total_run.font.name = "Calibri"
+        total_run.font.size = Pt(9.0)
+        total_run.font.color.rgb = MUTED
+        add_total_pages(total_run)
+
+    # Base Normal Style: 11pt, 1.2 line spacing, 6pt space-after
     style_normal = doc.styles['Normal']
     style_normal.font.name = 'Calibri'
     style_normal.font.size = Pt(11)
     style_normal.font.color.rgb = CHARCOAL
-    style_normal.paragraph_format.line_spacing = 1.15
-    style_normal.paragraph_format.space_after = Pt(5)
+    style_normal.paragraph_format.line_spacing = 1.2
+    style_normal.paragraph_format.space_after = Pt(6)
 
     return doc
 
